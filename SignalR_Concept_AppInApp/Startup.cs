@@ -20,18 +20,21 @@ namespace SignalR_Concept_AppInApp
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSignalR();
+            
             services.AddCors(options =>
             {
                 options.AddDefaultPolicy(
                                   builder =>
                                   {
                                       builder
-                                      .AllowAnyOrigin()
+                                      .WithOrigins("http://127.0.0.1:5500", "https://127.0.0.1:5500"
+                                      , "http://localhost:5500", "https://localhost:5500")
                                       .AllowAnyHeader()
+                                      .AllowCredentials()
                                       .AllowAnyMethod();
                                   });
             });
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
