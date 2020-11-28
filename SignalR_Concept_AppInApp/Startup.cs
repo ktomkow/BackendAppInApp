@@ -27,8 +27,9 @@ namespace SignalR_Concept_AppInApp
                                   builder =>
                                   {
                                       builder
-                                      .WithOrigins("http://127.0.0.1:5500", "https://127.0.0.1:5500"
-                                      , "http://localhost:5500", "https://localhost:5500")
+                                      //.WithOrigins("http://127.0.0.1:5500", "https://127.0.0.1:5500"
+                                      //, "http://localhost:5500", "https://localhost:5500")
+                                      .SetIsOriginAllowed(origin => true) // allow any origin
                                       .AllowAnyHeader()
                                       .AllowCredentials()
                                       .AllowAnyMethod();
