@@ -15,9 +15,23 @@ namespace SignalR_Concept_AppInApp
     {
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSignalR();
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                                  builder =>
+                                  {
+                                      builder
+                                      .AllowAnyOrigin()
+                                      .AllowAnyHeader()
+                                      .AllowAnyMethod();
+                                  });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -27,6 +41,12 @@ namespace SignalR_Concept_AppInApp
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.Run(async context =>
+            {
+                await context.Response.WriteAsync("Hello, World!");
+            });
+
+            app.UseCors();
 
             app.UseRouting();
 
