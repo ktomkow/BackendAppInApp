@@ -41,10 +41,11 @@ namespace SignalR_Concept_AppInApp
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.Run(async context =>
-            {
-                await context.Response.WriteAsync("Hello, World!");
-            });
+
+            //app.Run(async context =>
+            //{
+            //    await context.Response.WriteAsync("Hello, World!");
+            //});
 
             app.UseCors();
 
